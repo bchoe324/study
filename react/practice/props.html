@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.production.min.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // 컴포넌트: jsx를 return 하는 함수
+    // prop: <Btn text="Save Changes" /> = Btn({tex:"Save Changes"}) 와 같음. 입력하는 모든 프로퍼티를 첫 번째 argument(=props) 객체로 저장.
+    function Button({ text, emoji }) {
+      return (
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "1rem 2rem",
+            border: 0,
+            borderRadius: 10,
+          }}
+        >
+          {text} {emoji}
+        </button>
+      );
+    }
+    function Btn(props) {
+      return (
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "1rem 2rem",
+            border: 0,
+            borderRadius: 10,
+            fontSize: props.big ? "1.5rem" : "1rem",
+          }}
+        >
+          {props.text}
+        </button>
+      );
+    }
+    function App() {
+      return (
+        <div>
+          <Btn text="Save Changes" big={true} />
+          <Btn text="Continue" big={false} />
+        </div>
+      );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+  </script>
+</html>

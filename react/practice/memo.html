@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memo</title>
+    <link rel="stylesheet" href="reset.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function Btn({ text, onClick, fontSize = 16 }) {
+      return (
+        <button
+          onClick={onClick}
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            padding: "1rem 2rem",
+            margin: "0.5rem",
+            border: 0,
+            borderRadius: 10,
+            fontSize: fontSize,
+          }}
+        >
+          {text}
+        </button>
+      );
+    }
+    const MemorizedBtn = React.memo(Btn);
+    // 첫번째 버튼의 onClick 이벤트로 부모 태그의 state가 변경되어 자식 태그 전체가 re-render 됨.
+    // React.memo(): prop의 변경이 일어난 컴포넌트만 re-render
+    Btn.propTypes = {
+      text: PropTypes.string.isRequired,
+      fontSize: PropTypes.number,
+    };
+    function App() {
+      const [value, setValue] = React.useState("Save Changes");
+      const changeValue = () => setValue("Revert Changes");
+      // 커스텀 컴포넌트에 입력한 이벤트 리스너는 이벤트 리스너 아님. prop의 이름
+      return (
+        <div>
+          <Btn text={value} onClick={changeValue} fontSize={18} />
+          <Btn text="Continue" />
+        </div>
+      );
+    }
+    // ⬇️⬇️⬇️ react 18부터 바뀜
+    const root = document.getElementById("root");
+    ReactDOM.createRoot(root).render(<App />);
+  </script>
+</html>
