@@ -21,7 +21,8 @@
   <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    function Btn({ text, onClick, fontSize = 16 }) {
+    function Btn({ onClick, fontSize = 16, id, click }) {
+      console.log(id);
       return (
         <button
           onClick={onClick}
@@ -35,7 +36,7 @@
             fontSize: fontSize,
           }}
         >
-          {text}
+          {click ? "❕" : "❔"}
         </button>
       );
     }
@@ -43,17 +44,28 @@
     // 첫번째 버튼의 onClick 이벤트로 부모 태그의 state가 변경되어 자식 태그 전체가 re-render 됨.
     // React.memo(): prop의 변경이 일어난 컴포넌트만 re-render
     Btn.propTypes = {
-      text: PropTypes.string.isRequired,
+      // text: PropTypes.string.isRequired,
       fontSize: PropTypes.number,
     };
     function App() {
-      const [value, setValue] = React.useState("Save Changes");
-      const changeValue = () => setValue("Revert Changes");
+      const [value1, setValue1] = React.useState(false);
+      const changeValue1 = () => {
+        setValue1((prev) => !prev);
+      };
+      const [value2, setValue2] = React.useState(false);
+      const changeValue2 = () => {
+        setValue2((prev) => !prev);
+      };
       // 커스텀 컴포넌트에 입력한 이벤트 리스너는 이벤트 리스너 아님. prop의 이름
       return (
         <div>
-          <Btn text={value} onClick={changeValue} fontSize={18} />
-          <Btn text="Continue" />
+          <MemorizedBtn
+            id="1"
+            click={value1}
+            onClick={changeValue1}
+            fontSize={18}
+          />
+          <MemorizedBtn id="2" />
         </div>
       );
     }
