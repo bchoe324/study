@@ -1,15 +1,8 @@
----
-created:2022-10-25 00:49
-title: Web Front-End & Web Back-End
-tags: []
-aliases: []
-related: []
-cssClass: 
----
 
 # 웹 프론트 엔드 & 웹 백엔드의 역할과 기술적 구성
 
 ![frontend & backend](https://blog.kakaocdn.net/dn/bCJsOp/btqwyC8LBPH/WM069XZ4h1xc7jKutuVxf0/img.jpg)
+출처: https://blog.kakaocdn.net/dn/bCJsOp/btqwyC8LBPH/WM069XZ4h1xc7jKutuVxf0/img.jpg
 
 ## Web Front-End
 

@@ -1,11 +1,3 @@
----
-created:2022-10-24 22:27
-title: HTTP - Hypertext Transfer Protocol
-tags: []
-aliases: []
-related: []
-cssClass: 
----
 
 # HTTP 프로토콜
 
